@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SHOOPER MARIO</title>
+        <link rel="shortcut icon" href="img/iconoRedondo.png" type="image/x-icon">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <main>
+            <section id="sectionEnemigo">
+                <form id="formulario">
+                    <label for="nombre">Nuevo nombre del Objeto:</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre del Objeto">
+                    <label for="descripcion">Nueva descripción del Objeto:</label>
+                    <textarea id="mensaje" name="mensaje" rows="3" placeholder="Descripción del Objeto"></textarea>
+                    <label for="imagenes">Nuevas imágenes del Objeto:</label>
+                    <div class="imagenes">
+                        <div class="imagen" id="imagen1">Imagen 1</div>
+                        <div class="imagen" id="imagen2">Imagen 2</div>
+                        <div class="imagen" id="imagen3">Imagen 3</div>
+                    </div>
+                    <input type="file">
+                    <input type="submit" value="Actualizar">
+                    <input type="reset" value="Restablecer">
+                </form>
+            </section>
+            <a class="volver" href="index.html">Volver</a>
+        </main>
+    </body>
+</html>

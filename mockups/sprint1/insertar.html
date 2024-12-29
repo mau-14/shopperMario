@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SHOPPER MARIO</title>
+        
+        <!-- ENLACES DE DISEÑO E ICONOS -->
+        <link rel="shortcut icon" href="img/iconoRedondo.png" type="image/x-icon">
+        <link rel="stylesheet" href="style.css" type="text/css">
+    </head>
+    <body>
+        <main>
+            <section id="panelInsertar">
+                <h3>INSERTAR</h3>
+                
+                <!-- Select con opciones -->
+                <label for="selectInsertar">Tipo de elemento</label>
+                <select id="selectInsertar" name="tipoElemento">
+                    <option value="jugador">Jugador</option>
+                    <option value="npc">NPC</option>
+                    <option value="objeto">Objeto</option>
+                    <option value="enemigo">Enemigo</option>
+                </select>
+                
+                <!-- Formulario para datos -->
+                <form id="formInsertar" action="#" method="post" enctype="multipart/form-data">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Introduce el nombre" required>
+                    
+                    <label for="descripcion">Descripción</label>
+                    <textarea id="descripcion" name="descripcion" placeholder="Introduce una descripción" rows="4" required></textarea>
+                    
+                    <label for="imagenes">Imágenes</label>
+                    <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple required>
+                    
+                    <button type="submit">Insertar</button>
+                    <button type="button" onclick='window.location.href= "panelAdmin.html"'>Volver</button>
+                </form>
+            </section>
+        </main>
+    </body>
+</html>

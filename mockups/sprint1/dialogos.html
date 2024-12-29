@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SHOPPER MARIO</title>
+        
+        <!-- ENLACES DE DISEÑO E ICONOS -->
+        <link rel="shortcut icon" href="img/iconoRedondo.png" type="image/x-icon">
+        <link rel="stylesheet" href="style.css" type="text/css">
+    </head>
+    <body id="panelAdmin">
+        <aside>
+            <button onclick="window.location.href='dashboard.html'"><h3>DASHBOARD</h3></button>
+            <button onclick="window.location.href='modificar.html'"><h3>PERSONAJES</h3></button>
+            <button onclick="window.location.href='imagenes.html'"><h3>IMAGENES</h3></button>
+            <button onclick="window.location.href='objetos.html'"><h3>OBJETOS</h3></button>
+            <button onclick="window.location.href='dialogos.html'"><h3>DIÁLOGOS</h3></button>
+            <button><h3>RANKING</h3></button>
+        </aside>
+        <main>
+            <section id="panelDialogos">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Diálogo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>"Compra menos, elige bien y hazlo durar."</td>
+                            <td>
+                                <button class="btn-modificar">Modificar</button>
+                                <button class="btn-borrar">Borrar</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>"Cada prenda tiene un costo ambiental. Piénsalo antes de comprar."</td>
+                            <td>
+                                <button class="btn-modificar">Modificar</button>
+                                <button class="btn-borrar">Borrar</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>"Opta por ropa sostenible y ayuda a cuidar el planeta."</td>
+                            <td>
+                                <button class="btn-modificar">Modificar</button>
+                                <button class="btn-borrar">Borrar</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>"Tu decisión de compra puede marcar la diferencia."</td>
+                            <td>
+                                <button class="btn-modificar">Modificar</button>
+                                <button class="btn-borrar">Borrar</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>"La moda sostenible nunca pasa de moda."</td>
+                            <td>
+                                <button class="btn-modificar">Modificar</button>
+                                <button class="btn-borrar">Borrar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button onclick='window.location.href="inicioSesion.html"' id="buttonLogout">
+                  Cerrar sesión
+                </button>
+            </section>
+        </main>
+    </body>
+</html>

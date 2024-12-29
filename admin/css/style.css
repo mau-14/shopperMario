@@ -1,0 +1,594 @@
+
+/* ------------- LAYOUT PRINCIPAL ------------- */
+
+    /* ------------- TIPOGRAFIA Y ESTILOS ------------- */
+
+    @import url('https://fonts.cdnfonts.com/css/super-mario-256');
+    @import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    margin: auto;
+    font-family: 'Super Mario 256', sans-serif;
+}
+
+html, body{
+    width: 100%;
+    background-image: url('../img/FondoJuego.jpg');
+    background-repeat: round;
+    background-size: cover;
+}
+
+    main {
+        width: 100%;
+        height: 100dvh;
+    }
+
+/* ------------- OPCIONES INICIO ------------- */
+
+    /* ------------- TITULO ------------- */
+        h1, h2, h3{
+            text-align: center;
+            margin: 0 auto 3%;
+            padding-top: 3%;
+            text-shadow: 10px 10px black;
+            -webkit-text-stroke-width: 3px;
+            -webkit-text-stroke-color: black;
+        }
+
+        h1{
+            font-size: 6rem;
+            width: 40%;
+        }
+        h1 span:nth-child(1) { color: #0074D9; } 
+        h1 span:nth-child(2) { color: #FFDC00; } 
+        h1 span:nth-child(3) { color: #FF4136; } 
+        h1 span:nth-child(4) { color: #2ECC40; } 
+        h1 span:nth-child(5) { color: #FF4136; } 
+        h1 span:nth-child(6) { color: #FFDC00; } 
+        h1 span:nth-child(7) { color: #0074D9; } 
+        h1 span:nth-child(8) { color: #FFDC00; } 
+        h1 span:nth-child(9) { color: #0074D9; } 
+        h1 span:nth-child(10) { color: #2ECC40; }
+        h1 span:nth-child(11) { color: #FF4136; }
+        h1 span:nth-child(12) { color: #FFDC00; } 
+        h1 span:nth-child(13) { color: #0074D9; } 
+        h1 span:nth-child(14) { color: #FF4136; } 
+
+    h2, h2 > a{
+        width: 40%;
+        margin-top: 2%;
+        font-size: 4.5rem;
+        color: brown;
+    }
+
+    h3, h3 > a{
+        width: 40%;
+        margin-top: 2%;
+        font-size: 3rem;
+        text-decoration: none;
+        color: brown;
+        -webkit-text-stroke-color: black;
+    }
+
+/* ------------- ACCESO ADMIN ------------- */
+    img {
+        position: absolute;
+        top: 72%;
+        left: 45.5%;
+        width: 8%;
+    }
+
+    #admin{
+        cursor: default;
+    }
+
+/* ------------- INICIO SESION ADMIN ------------- */
+
+    #volver{
+        position: fixed;
+        width: 10%;
+        padding: 0.5%;
+        margin: 1%;
+        border: none;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        color: #4AA2E2;
+        background-color: #D9D9D9;
+        
+    }
+
+    #sectionLogin {
+        width: 50%;
+        border-radius: 0.5vw;
+        background-image: url('../img/fondoLadrillo.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    #sectionLogin, #sectionLogin * {
+        color: white;
+        font-size: 1.75rem;
+        font-family: 'Jersey 10';
+        -webkit-text-stroke-width: 0;
+        -webkit-text-stroke-color: transparent;
+        text-shadow:none;
+    }
+
+    #sectionLogin > form {
+        width: 100%;
+        padding: 1.5% 0;
+    }
+
+
+    #sectionLogin input {
+        display: block;
+        width: fit-content;
+        margin: 1.5% auto;
+        padding: 1% 1.5%;
+        border: 2px solid #D9D9D9;
+        border-radius: 10px;
+        background-color: #d9d9d940;
+        font-size: 1.75rem;
+    }
+
+    #sectionLogin input::placeholder {
+        color: #D9D9D9;
+        -webkit-text-stroke-width: 1.5px;
+        font-style: italic;
+    }
+
+    #sectionLogin div {
+        width: fit-content;
+        margin: auto;
+        color: #D9D9D9;
+        -webkit-text-stroke-width: 2px;
+    }
+
+    #sectionLogin div > input[type="checkbox"] {
+        display: inline-block;
+    }
+
+    #sectionLogin p {
+        margin-top: 3%;
+        font-size: 0.8rem;
+        text-align: center;
+        color: #D9D9D9;
+        font-size: 1rem;
+        -webkit-text-stroke-width: 1.5px;
+        -webkit-text-stroke-color: black;
+    }
+
+    #sectionLogin a{
+        color: lightsteelblue;
+    }
+
+    #sectionLogin input[type="submit"] {
+        width: 40%;
+        margin-top: 3%;
+    }
+
+    #sectionLogin .error-message{
+      color:yellow;
+      font-size: 1em;
+    }
+
+
+
+/* ------------- RANKING ------------- */
+
+    table#ranking {
+        width: 70%;
+        margin: 1% auto;
+        padding: 1% 0;
+        background-image: url('../img/fondoLadrillo.jpg');
+        background-size: cover;
+        
+    }
+    th > h3{
+        font-size: 2rem;
+        text-shadow: 6px 7px black;
+        color: #D9D9D9;
+    }
+
+    td {
+        text-align: center;
+        font-size: 2rem;
+        color: #D9D9D9;
+        text-shadow: 6px 7px black;
+    }
+    
+
+/* ------------- RECUPERAR CONTRASEÑA ------------- */
+    /*
+    #sectionOlvidado{
+        width: 30%;
+        margin: 0;
+        padding: 0;
+        height: fit-content;
+        margin: 4% auto 0;
+        padding: 2%;
+        border-radius: 20px;
+        background-image: url('../img/fondoLadrillo.jpg');
+        background-repeat: round;
+        background-size: cover;
+    }
+
+    #sectionOlvidado, #sectionOlvidado *{
+        color: white;
+        font-size: 1.75rem;
+        font-family: 'Jersey 10';
+        -webkit-text-stroke-width: 0;
+        -webkit-text-stroke-color: transparent;
+        text-shadow:none;
+    }
+    #sectionOlvidado > form {
+        width: 100%;
+        height: 100%;
+        padding: 1.5% 0;
+        display: flex;
+        align-items: center ;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    #sectionOlvidado input {
+        width: fit-content;
+        margin: 1.5% ;
+        padding: 1% 1.5%;
+        border: 2px solid #D9D9D9;
+        border-radius: 10px;
+        background-color: #d9d9d940;
+        font-size: 1.75rem;
+        flex-grow: 0;
+    }
+
+    #sectionOlvidado input::placeholder {
+        -webkit-text-stroke-width: 1.5px;
+    }
+
+
+    #sectionOlvidado input[type="submit"] {
+        background-color:green;
+        width: fit-content;
+        flex-grow: 0.25;
+        margin-bottom: 1%;
+    }
+
+    #sectionOlvidado input[type="submit"]:hover {
+    background-color: darkgreen;
+    }
+
+/* ------------- PANEL ADMINISTRADOR ------------- */
+
+    #panelAdmin {
+        display: flex;
+    }
+
+    aside {
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+        height: 100dvh;
+        background-image: url('../img/fondoLadrillo.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    aside > a {
+        display: block;
+        flex-grow: 1;
+        flex-shrink: 1;
+        width: 100%;
+        margin: 0;
+    }
+
+    aside button{
+        width: 100%;
+        height: 100%;
+        border: none;
+        background-color: transparent;
+    }
+
+    aside > a:focus, a:hover {
+        flex-grow: 2;
+        background-color: #461b01c1;
+        transition: 0.1s ease-in-out;
+    }
+
+    aside h3 {
+        width: 100%;
+        text-align: left;
+        padding-left: 4%;   
+        font-family:'Jersey 10';
+        font-size: 2.5rem;
+        color: #D9D9D9;
+        letter-spacing: 0.5vw;
+        text-shadow: 0.2vw 0.3vw black;
+        -webkit-text-stroke-width: 0;
+    }
+    
+    #panelAdmin > main {
+        position: relative;
+        height: 95dvh;
+        margin: 1%;
+        border-radius: 0.5vw;
+        background-color: #d9d9d99f;
+    }
+
+    #Logout {
+        position: absolute;
+        top: 1%;
+        left: 98%;
+        transform: translate(-50%);
+        width: 2.5%;
+        padding: 0.2vw;
+        cursor: pointer;
+        background-color: transparent;
+    }
+
+    #Logout img {
+        text-align: center;
+        font-family: 'Jersey 10';
+        font-size: 1.4rem;
+        color: #860101;
+        letter-spacing: 0.5vw;
+        text-shadow: 0.1vw 0.1vw black;
+        -webkit-text-stroke-width: 0;
+    }
+
+    #mostrarDatosPanelAdmin, #mostrarDatosPanelAdmin *  {
+      text-shadow: none;
+      -webkit-text-stroke-width: 0;
+      -webkit-text-stroke-color: transparent;
+      font-family: 'Jersey 10';
+    }    
+    #mostrarDatosPanelAdmin{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: fit-content;
+    }
+    #mostrarDatosPanelAdmin .btn-insertar{
+      margin: 30px 25px;
+      width: fit-content;
+    }
+    .dinamicos-Admin{
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      width: fit-content;
+      height: fit-content;
+    }
+    
+    .dinamicos-Admin h3{
+
+      font-size: 2em;
+      color: blue;
+      width: fit-content;
+      margin: 5px 10px;
+
+    }
+
+    .dinamicos-Admin p{
+      font-size: 2em;
+    }
+
+    
+
+/* ------------- GESTION DE IMAGENES ------------- */
+
+    #vistaListar {
+        height: 100dvh;
+        background-repeat: round;
+        background-size: cover;
+    }
+
+    table {
+        width: 80%;
+        border-collapse: collapse;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    th, td {
+        padding: 12px;
+        text-align: left;
+        font-family: 'Jersey 10';
+        text-shadow: none;
+        color: black;
+    }
+    
+    th {
+        background-color: #007BFF;
+        color: white;
+        text-align: center;
+        font-size: 2rem;
+    }
+    
+    td {
+        font-size: 1.6rem;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #ddd;
+    }
+
+    .action-buttons {
+        text-align: center;
+        white-space: nowrap;
+    }
+    .btn {
+        padding: 8px 16px;
+        margin-left: 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        color: white;
+        transition: background-color 0.3s ease;
+    }
+    .btn-eliminar {
+        background-color: #FF4D4D;
+    }
+    .btn-eliminar:hover {
+        background-color: #CC0000;
+    }
+    .btn-modificar {
+        background-color: #4CAF50;
+    }
+    .btn-modificar:hover {
+        background-color: #357a38;
+    }
+      
+#select-entidades{
+  position:fixed;
+  top: 14%;
+  left: 25%;
+  width: fit-content;
+  font-size: 1.2em;
+}
+/* Modal contenedor */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Mostrar el modal */
+.modal:not(.hidden) {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Contenido del modal */
+.modal-content {
+  background: #ffffff;
+  padding: 20px 30px;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  left: 10%;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Animación de aparición */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Botón de cierre */
+.close-button {
+  font-size: 18px;
+  font-weight: bold;
+  color: #555;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  color: #ff0000;
+}
+
+/* Footer del modal */
+.modal-footer {
+  margin-top: 15px;
+  text-align: right;
+}
+
+/* Botón guardar */
+.btn {
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo de etiquetas */
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Estilo de inputs */
+form input,
+form textarea{
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form select{
+  width: fit-content;
+  padding: 8px 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+/* Estilo del textarea */
+form textarea {
+  resize: vertical; /* Permitir solo redimensionar verticalmente */
+  min-height: 80px;
+}
+
+
+.imagen-sql{
+  position: static;
+}
+.imagen-lista{
+  position: static;
+}

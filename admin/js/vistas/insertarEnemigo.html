@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Insertar Enemigo</title>
+    <link href="../../css/style.css" rel="stylesheet">
+    <script type='module' src="../app.js"></script>
+    <style>
+      body {
+        text-align: center;
+        font-size: 1em;
+      }
+      input, select, label {
+        margin: 20px 0;
+      }
+      form {
+        max-width: 600px;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+      }
+     #contenedorImagenes {
+       width: 100%;
+       height: fit-content;
+       display: flex;
+     }
+     #contenedorImagenes .img-enemigo{
+       position: static;
+        max-width: 100px;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <form id="formInsertEnemigo">
+        <label for="nombreEnemigo">Nombre del Enemigo</label><br>
+        <input type="text" id="nombreEnemigo" name="nombreEnemigo" ><br><br>
+
+       <label for="descripcionEnemigo">Descripción</label><br>
+      <textarea id="descripcionEnemigo" name="descripcion" rows="5" cols="30" required></textarea><br><br> 
+
+        <label for="habilidadesEnemigo">Habilidades</label><br>
+        <select id="habilidadesEnemigo" name="habilidades">
+          <option value="volar">Volar</option>
+          <option value="correr">Correr</option>
+          <option value="bolasDeFuego">Disparar Bolas de Fuego</option>
+        </select><br><br>
+        <label for="imagenesEnemigo">Imágenes</label><br>
+        <input type="file" id="imagenesEnemigo" name="imagenes[]" multiple ><br><br>
+
+        <div id="contenedorImagenes"></div><br>
+        <button type="submit">Insertar Enemigo</button>
+      </form>
+        <div id="enemigos"></div><br>
+    </main>
+  </body>
+</html>

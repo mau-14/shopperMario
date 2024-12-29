@@ -1,0 +1,43 @@
+[16-Dec-2024 19:06:31 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'user2daw_23'@'31.200.242.5' to database 'shopperMario' in /home/user2daw/public_html/23/admin/app/models/m_dashboard.php:11
+Stack trace:
+#0 /home/user2daw/public_html/23/admin/app/models/m_dashboard.php(11): mysqli->__construct('esvirgua.com', 'user2daw_23', 'm!?4+N1N&qU2', 'shopperMario')
+#1 /home/user2daw/public_html/23/admin/app/controllers/c_Dashboard.php(14): M_dashboard->__construct()
+#2 /home/user2daw/public_html/23/admin/index.php(17): C_Dashboard->llamada(NULL)
+#3 {main}
+  thrown in /home/user2daw/public_html/23/admin/app/models/m_dashboard.php on line 11
+[16-Dec-2024 19:08:12 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'nombreUsuario' in 'field list' in /home/user2daw/public_html/23/admin/app/models/m_dashboard.php:35
+Stack trace:
+#0 /home/user2daw/public_html/23/admin/app/models/m_dashboard.php(35): mysqli->query('SELECT nombreUs...')
+#1 /home/user2daw/public_html/23/admin/app/controllers/c_Dashboard.php(15): M_dashboard->datosAdmin()
+#2 /home/user2daw/public_html/23/admin/index.php(17): C_Dashboard->llamada(NULL)
+#3 {main}
+  thrown in /home/user2daw/public_html/23/admin/app/models/m_dashboard.php on line 35
+[16-Dec-2024 19:10:11 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'partida.idPersonaje' in 'on clause' in /home/user2daw/public_html/23/admin/app/models/m_dashboard.php:40
+Stack trace:
+#0 /home/user2daw/public_html/23/admin/app/models/m_dashboard.php(40): mysqli->query('SELECT nombre ,...')
+#1 /home/user2daw/public_html/23/admin/app/controllers/c_Dashboard.php(15): M_dashboard->datosAdmin()
+#2 /home/user2daw/public_html/23/admin/index.php(17): C_Dashboard->llamada(NULL)
+#3 {main}
+  thrown in /home/user2daw/public_html/23/admin/app/models/m_dashboard.php on line 40
+[16-Dec-2024 19:22:45 UTC] Nombre de imagen vacio, no se puede insertar
+[16-Dec-2024 19:23:11 UTC] Column 'nombreArchivo' cannot be null
+[16-Dec-2024 19:32:47 UTC] Nombre de imagen vacio, no se puede insertar
+[16-Dec-2024 19:34:03 UTC] Column 'nombreArchivo' cannot be null
+[16-Dec-2024 19:34:33 UTC] Column 'nombreArchivo' cannot be null
+[16-Dec-2024 19:53:24 UTC] Nombre de imagen vacio, no se puede insertar
+[17-Dec-2024 09:10:08 UTC] Column 'nombreArchivo' cannot be null
+[17-Dec-2024 09:11:52 UTC] Nombre de imagen vacio, no se puede insertar
+[17-Dec-2024 12:15:36 UTC] Los datos necesarios no están completos.
+[17-Dec-2024 12:15:36 UTC] Nombre de imagen vacio, no se puede insertar
+[17-Dec-2024 12:15:36 UTC] Nombre de imagen vacio, no se puede insertar
+[17-Dec-2024 12:16:43 UTC] Los datos necesarios no están completos.
+[17-Dec-2024 12:16:43 UTC] Los datos necesarios no están completos.
+[18-Dec-2024 09:22:42 UTC] Los datos necesarios no están completos.
+[18-Dec-2024 09:23:16 UTC] Los datos necesarios no están completos.
+[18-Dec-2024 09:28:26 UTC] Column 'nombreArchivo' cannot be null
+[18-Dec-2024 09:44:16 UTC] Los datos necesarios no están completos.
+[18-Dec-2024 09:44:33 UTC] Column 'nombreArchivo' cannot be null
+[18-Dec-2024 09:44:33 UTC] Los datos necesarios no están completos.
+[18-Dec-2024 09:44:59 UTC] Column 'nombreArchivo' cannot be null
+[18-Dec-2024 10:34:36 UTC] Column 'nombreArchivo' cannot be null
+[18-Dec-2024 22:50:33 UTC] Column 'nombreArchivo' cannot be null
