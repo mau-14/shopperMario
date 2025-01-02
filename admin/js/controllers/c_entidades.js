@@ -12,43 +12,63 @@ class C_entidades {
     this.contenedorTabla.id = 'contenedorTabla'
   }
 
- async crearSelect() {
-  this.panelAdmin.innerHTML = ''
-  const selectEntidades = document.createElement('select')     
+async crearSelect() {
+  const fragment = document.createDocumentFragment();
 
-  selectEntidades.id = 'select-entidades'
-  this.panelAdmin.appendChild(selectEntidades)
+  // Crear y configurar el select
+  const selectEntidades = document.createElement('select');
+  selectEntidades.id = 'select-entidades';
 
-  const defaultOption = document.createElement('option')
-  defaultOption.value = ''
-  defaultOption.textContent = 'Elige'
-  selectEntidades.appendChild(defaultOption)
-  
+  const defaultOption = document.createElement('option');
+  defaultOption.value = '';
+  defaultOption.textContent = 'Elige';
+  selectEntidades.appendChild(defaultOption);
 
-  const entidades = new M_entidades()
-  const data = await entidades.datosDashboard()
+  // Obtener datos y llenar el select
+  const entidades = new M_entidades();
+  const data = await entidades.datosDashboard();
+
+  if (!data || data.length === 0) {
+    console.error("No hay datos disponibles.");
+    return;
+  }
+
   data.forEach(item => {
-    const option = document.createElement('option')
-    option.value = item.tipo 
-    option.textContent = item.nombre
-    selectEntidades.appendChild(option)
-  })
-    const insertarButton = document.createElement('button')
-      insertarButton.id = 'insertar-btn'
-      insertarButton.classList.add('btn', 'btn-insertar')
-      insertarButton.textContent = 'Insertar'
-    this.panelAdmin.appendChild(insertarButton)
+    const option = this.createOption(item.tipo, item.nombre);
+    selectEntidades.appendChild(option);
+  });
 
-    insertarButton.addEventListener('click' ,(event) => {
-      this.generarFormularioVacio(data)
-    })
+  // Crear botón de insertar
+  const insertarButton = document.createElement('button');
+  insertarButton.id = 'insertar-btn';
+  insertarButton.classList.add('btn', 'btn-insertar');
+  insertarButton.textContent = 'Insertar';
+
+  // Añadir eventos
+  insertarButton.addEventListener('click', () => {
+    this.generarFormularioVacio(data);
+  });
+
   selectEntidades.addEventListener('change', (event) => {
-    const valorSelect = event.target.value
-    this.manejarOption(valorSelect, data)
-  })
+    const valorSelect = event.target.value;
+    this.manejarOption(valorSelect, data);
+  });
 
-} 
-  async manejarOption(valorSelect, data) {
+  // Añadir elementos al fragmento
+  fragment.appendChild(selectEntidades);
+  fragment.appendChild(insertarButton);
+
+  // Vaciar y agregar contenido al panel
+  this.panelAdmin.innerHTML = '';
+  this.panelAdmin.appendChild(fragment);
+}
+
+createOption(value, text) {
+  const option = document.createElement('option');
+  option.value = value;
+  option.textContent = text;
+  return option;
+}  async manejarOption(valorSelect, data) {
     const listarTablas = new M_listarTareas()
     let personajes = await listarTablas.listar(valorSelect)
     this.generarTabla(personajes, data)
