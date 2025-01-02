@@ -86,6 +86,8 @@ async manejarOption(valorSelect, data) {
         this.contenedorTabla.innerHTML = `<h2>${personajes.mensaje}</h2>`
         return
     }
+    
+    const fragment = document.createDocumentFragment()
 
     const table = document.createElement('table')
     const cabeceras = Object.keys(personajes[0]).filter(cabecera => cabecera !== 'idPersonaje')
@@ -142,7 +144,8 @@ async manejarOption(valorSelect, data) {
     })
 
     table.appendChild(tbody)
-    this.contenedorTabla.appendChild(table)
+    fragment.appendChild(table)
+    this.contenedorTabla.appendChild(fragment)
 
     // Delegación de Eventos
     this.contenedorTabla.addEventListener('click', (event) => {
