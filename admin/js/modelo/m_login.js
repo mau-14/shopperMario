@@ -8,7 +8,7 @@ class M_login{
   async login(){
 
     try{
-      const respuesta = await fetch('./index.php?c=InicioSesion&m=validarInicioSesion',{
+      const respuesta = await fetch('/SHOPPERMARIO/admin/index.php?c=InicioSesion&m=validarInicioSesion',{
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'
