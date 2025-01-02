@@ -29,40 +29,54 @@ window.addEventListener('DOMContentLoaded', () => {
           passwd.type = checkbox.checked ? 'text' : 'password';
       }
 
-      visibilidadPassword() // Para si se recarga la página con el check pulsado
+      visibilidadPassword() // Para por si se recarga la página con el check pulsado
       checkbox.addEventListener('click', visibilidadPassword)
 
   }
 
   /*--------------------- PANEL ADMIN -------------------- */
 
-  const panelAdmin = document.getElementById('mostrarDatosPanelAdmin')
-  if(panelAdmin){
-    const botonDashboard = document.getElementById('dashboard')
-    if(botonDashboard){
-      botonDashboard.addEventListener('click', function(event) {
-        let dashboard = new C_dashboard(panelAdmin)
-        dashboard.cargarDatos()
-      })
-    }
+ let isLoading = false;
 
-    const botonPersonajes = document.getElementById('entidades')
-    if(botonPersonajes){
-      botonPersonajes.addEventListener('click', function(event){
-        const entidades = new C_entidades(panelAdmin)
-        entidades.crearSelect()
-        })
-      }
-
-    const botonDialogos = document.getElementById('dialogos')
-    if(botonDialogos){
-      botonDialogos.addEventListener('click', function(event){
-        panelAdmin.innerHTML=''
-        const dialogos = new C_dialogos(panelAdmin)
-        dialogos.cargarDatos()
-
-        })
-    }
+const panelAdmin = document.getElementById('mostrarDatosPanelAdmin');
+if (panelAdmin) {
+  const botonDashboard = document.getElementById('dashboard');
+  if (botonDashboard) {
+    botonDashboard.addEventListener('click', () => {
+      if (isLoading) return; // Evita sobrescribir si ya está cargando
+      isLoading = true;
+      panelAdmin.innerHTML = '<h3>Cargando Dashboard...</h3>';
+      const dashboard = new C_dashboard(panelAdmin);
+      dashboard.cargarDatos().finally(() => {
+        isLoading = false; // Libera la bandera cuando termine
+      });
+    });
   }
 
+  const botonEntidades = document.getElementById('entidades');
+  if (botonEntidades) {
+    botonEntidades.addEventListener('click', () => {
+      if (isLoading) return;
+      isLoading = true;
+      panelAdmin.innerHTML = '<h3>Cargando...</h3>';
+      const entidades = new C_entidades(panelAdmin);
+      entidades.crearSelect().finally(() => {
+        isLoading = false;
+      });
+    });
+  }
+
+  const botonDialogos = document.getElementById('dialogos');
+  if (botonDialogos) {
+    botonDialogos.addEventListener('click', () => {
+      if (isLoading) return;
+      isLoading = true;
+      panelAdmin.innerHTML = 'Cargando Diálogos...';
+      const dialogos = new C_dialogos(panelAdmin);
+      dialogos.cargarDatos().finally(() => {
+        isLoading = false;
+      });
+    });
+  }
+} 
 })
