@@ -73,100 +73,107 @@ createOption(value, text) {
   return option
 }
 async manejarOption(valorSelect, data) {
-    const listarTablas = new M_listarTareas()
-    let personajes = await listarTablas.listar(valorSelect)
-    this.generarTabla(personajes, data)
+  const listarTablas = new M_listarTareas()
+  let personajes = await listarTablas.listar(valorSelect)
+  this.generarTabla(personajes, data)
+}
+
+generarTabla(personajes, data) {
+  this.panelAdmin.appendChild(this.contenedorTabla)
+  this.contenedorTabla.innerHTML = ''
+
+  if (personajes.mensaje) {
+    this.contenedorTabla.innerHTML = `<h2>${personajes.mensaje}</h2>`
+    return
   }
 
-  generarTabla(personajes, data) {
-    this.panelAdmin.appendChild(this.contenedorTabla)
-    this.contenedorTabla.innerHTML = ''
+  // Crear un fragmento de documento para mejorar la performance
+  const fragment = document.createDocumentFragment()
 
-    if (personajes.mensaje) {
-        this.contenedorTabla.innerHTML = `<h2>${personajes.mensaje}</h2>`
-        return
-    }
-    
-    const fragment = document.createDocumentFragment()
+  const table = document.createElement('table')
+  const cabeceras = Object.keys(personajes[0]).filter(cabecera => cabecera !== 'idPersonaje')
+  let theadHTML = '<thead><tr>'
+  cabeceras.forEach(cabecera => {
+    theadHTML += `<th>${cabecera.toUpperCase()}</th>`
+  })
+  theadHTML += '<th>ACCIONES</th></thead>'
 
-    const table = document.createElement('table')
-    const cabeceras = Object.keys(personajes[0]).filter(cabecera => cabecera !== 'idPersonaje')
-    let theadHTML = '<thead><tr>'
+  table.innerHTML = theadHTML
+
+  const tbody = document.createElement('tbody')
+  
+  personajes.forEach(personaje => {
+    const fila = document.createElement('tr')
+
     cabeceras.forEach(cabecera => {
-        theadHTML += `<th>${cabecera.toUpperCase()}</th>`
-    })
-    theadHTML += '<th>ACCIONES</th></thead>'
-
-    table.innerHTML = theadHTML
-
-    const tbody = document.createElement('tbody')
-    personajes.forEach(personaje => {
-        const fila = document.createElement('tr')
-        cabeceras.forEach(cabecera => {
-            const celda = document.createElement('td')
-            if (cabecera === 'urls' && personaje[cabecera]) {
-                const imagenDiv = document.createElement('div') // Contenedor para imágenes
-                imagenDiv.style.display = 'flex' // Flexbox para mostrar imágenes horizontalmente
-                imagenDiv.style.gap = '10px'
-
-                // Convertir la cadena de URLs a un array
-                const imagenes = personaje[cabecera].split(',')
-                console.log(imagenes)
-                imagenes.forEach(url => {
-                    console.log(url)
-                    const imagen = document.createElement('img')
-                    imagen.src = '../../img/'+url.trim() 
-                    imagen.className = 'imagen-lista'
-                    imagen.alt = 'Imagen del personaje'
-                    imagen.style.width = '100px'
-                    imagen.style.height = 'auto'
-                    imagenDiv.appendChild(imagen)
-                })
-
-                celda.appendChild(imagenDiv)
-            } else {
-                celda.textContent = personaje[cabecera]
-            }
-
-            fila.appendChild(celda)
+      const celda = document.createElement('td')
+      if (cabecera === 'urls' && personaje[cabecera]) {
+        const imagenDiv = document.createElement('div')
+        imagenDiv.style.display = 'flex'
+        imagenDiv.style.gap = '10px'
+        const imagenes = personaje[cabecera].split(',')
+        imagenes.forEach(url => {
+          const imagen = document.createElement('img')
+          imagen.src = '../../img/' + url.trim()
+          imagen.className = 'imagen-lista'
+          imagen.alt = 'Imagen del personaje'
+          imagen.style.width = '100px'
+          imagen.style.height = 'auto'
+          imagenDiv.appendChild(imagen)
         })
+        celda.appendChild(imagenDiv)
+      } else {
+        celda.textContent = personaje[cabecera]
+      }
 
-        // Columna de acciones
-        const actionCell = document.createElement('td')
-        actionCell.classList.add('action-buttons')
-        actionCell.innerHTML = `
-            <button class="btn btn-eliminar" data-id="${personaje.idPersonaje}">Eliminar</button>
-            <button class="btn btn-modificar" data-id="${personaje.idPersonaje}">Modificar</button>
-        `
-        fila.appendChild(actionCell)
-
-        tbody.appendChild(fila)
+      fila.appendChild(celda)
     })
 
-    table.appendChild(tbody)
-    fragment.appendChild(table)
-    this.contenedorTabla.appendChild(fragment)
+    // Columna de acciones
+    const actionCell = document.createElement('td')
+    actionCell.classList.add('action-buttons')
+    actionCell.innerHTML = `
+      <button class="btn btn-eliminar" data-id="${personaje.idPersonaje}">Eliminar</button>
+      <button class="btn btn-modificar" data-id="${personaje.idPersonaje}">Modificar</button>
+    `
+    fila.appendChild(actionCell)
+    tbody.appendChild(fila)
+  })
 
-    // Delegación de Eventos
-    this.contenedorTabla.addEventListener('click', (event) => {
-        if (event.target.classList.contains('btn-eliminar')) {
-          let id = event.target.dataset.id
-          console.log(id)
-          id= Number(id) 
-          const respuesta = confirm("Estás seguro que deseas borrarlo?")
-          if(respuesta){
-              const modificar = new M_modificar().eliminarPersonaje(id)
-          }
-        }
-        if (event.target.classList.contains('btn-modificar')) {
-            const id = event.target.dataset.id
-            const personajeSeleccionado = personajes.find(p => p.idPersonaje == id)
-            this.generarFormulario(personajeSeleccionado, data)
-        }
-    })
+  table.appendChild(tbody)
 
+  // Agregar la tabla al fragmento en lugar de directamente al DOM
+  fragment.appendChild(table)
+
+  // Finalmente, agregar el fragmento al contenedor de la tabla
+  this.contenedorTabla.appendChild(fragment)
+
+  // Delegación de eventos
+  this.contenedorTabla.addEventListener('click', (event) => {
+    const target = event.target
+    const id = target.dataset.id
+
+    if (id) {
+      if (target.classList.contains('btn-eliminar')) {
+        this.eliminarPersonaje(id)
+      } else if (target.classList.contains('btn-modificar')) {
+        this.modificarPersonaje(id, personajes, data)
+      }
+    }
+  })
+}
+
+eliminarPersonaje(id) {
+  const respuesta = confirm("Estás seguro que deseas borrarlo?")
+  if (respuesta) {
+    new M_modificar().eliminarPersonaje(Number(id))
   }
+}
 
+modificarPersonaje(id, personajes, data) {
+  const personajeSeleccionado = personajes.find(p => p.idPersonaje == id)
+  this.generarFormulario(personajeSeleccionado, data)
+}
   generarFormulario(personaje, data) {
     let modal = document.getElementById('modal')
     if (!modal) {
