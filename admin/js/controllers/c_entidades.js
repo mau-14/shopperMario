@@ -13,62 +13,66 @@ class C_entidades {
   }
 
 async crearSelect() {
-  const fragment = document.createDocumentFragment();
+  const fragment = document.createDocumentFragment()
 
   // Crear y configurar el select
-  const selectEntidades = document.createElement('select');
-  selectEntidades.id = 'select-entidades';
+  const selectEntidades = document.createElement('select')
+  selectEntidades.id = 'select-entidades'
 
-  const defaultOption = document.createElement('option');
-  defaultOption.value = '';
-  defaultOption.textContent = 'Elige';
-  selectEntidades.appendChild(defaultOption);
+  const defaultOption = document.createElement('option')
+  defaultOption.value = ''
+  defaultOption.textContent = 'Elige'
+  defaultOption.disabled = true
+  defaultOption.selected = true
+
+  selectEntidades.appendChild(defaultOption)
 
   // Obtener datos y llenar el select
-  const entidades = new M_entidades();
-  const data = await entidades.datosDashboard();
+  const entidades = new M_entidades()
+  const data = await entidades.datosDashboard()
 
   if (!data || data.length === 0) {
-    console.error("No hay datos disponibles.");
-    return;
+    console.error("No hay datos disponibles.")
+    return
   }
 
   data.forEach(item => {
-    const option = this.createOption(item.tipo, item.nombre);
-    selectEntidades.appendChild(option);
-  });
+    const option = this.createOption(item.tipo, item.nombre)
+    selectEntidades.appendChild(option)
+  })
 
   // Crear botón de insertar
-  const insertarButton = document.createElement('button');
-  insertarButton.id = 'insertar-btn';
-  insertarButton.classList.add('btn', 'btn-insertar');
-  insertarButton.textContent = 'Insertar';
+  const insertarButton = document.createElement('button')
+  insertarButton.id = 'insertar-btn'
+  insertarButton.classList.add('btn', 'btn-insertar')
+  insertarButton.textContent = 'Insertar'
 
   // Añadir eventos
   insertarButton.addEventListener('click', () => {
-    this.generarFormularioVacio(data);
-  });
+    this.generarFormularioVacio(data)
+  })
 
   selectEntidades.addEventListener('change', (event) => {
-    const valorSelect = event.target.value;
-    this.manejarOption(valorSelect, data);
-  });
+    const valorSelect = event.target.value
+    this.manejarOption(valorSelect, data)
+  })
 
   // Añadir elementos al fragmento
-  fragment.appendChild(selectEntidades);
-  fragment.appendChild(insertarButton);
+  fragment.appendChild(selectEntidades)
+  fragment.appendChild(insertarButton)
 
   // Vaciar y agregar contenido al panel
-  this.panelAdmin.innerHTML = '';
-  this.panelAdmin.appendChild(fragment);
+  this.panelAdmin.innerHTML = ''
+  this.panelAdmin.appendChild(fragment)
 }
 
 createOption(value, text) {
-  const option = document.createElement('option');
-  option.value = value;
-  option.textContent = text;
-  return option;
-}  async manejarOption(valorSelect, data) {
+  const option = document.createElement('option')
+  option.value = value
+  option.textContent = text
+  return option
+}
+async manejarOption(valorSelect, data) {
     const listarTablas = new M_listarTareas()
     let personajes = await listarTablas.listar(valorSelect)
     this.generarTabla(personajes, data)
