@@ -5,9 +5,9 @@ class C_validarEnemigo {
       throw new Error("El formulario no existe en el DOM.")
     }
     this.formElement = formElement
-    this.nombreEnemigo = document.getElementById('nombre')
-    this.descripcionEnemigo = document.getElementById('descripcion')
-    this.imagenes = document.getElementById('newImages[]')
+    this.nombreEnemigo = document.getElementById('name')
+    this.descripcionEnemigo = document.getElementById('description')
+    this.imagenes = document.getElementById('insertImagenes')
     this.contenedorImagen = document.createElement('div')
     this.formElement.appendChild(this.contenedorImagen)
     
@@ -21,7 +21,7 @@ class C_validarEnemigo {
     let valido = true
 
     // Validación genérica de campos
-    valido = this.validarCampo(this.nombreEnemigo, 'El nombre del enemigo es obligatorio') && valido
+    valido = this.validarCampo(this.nombreEnemigo, 'El nombre es obligatorio') && valido
     valido = this.validarDescripcion(this.descripcionEnemigo) && valido
     valido = this.validarImagenes() && valido
 
@@ -62,8 +62,9 @@ class C_validarEnemigo {
   validarFormatoImagenes(files) {
     const formatosPermitidos = ['image/jpeg', 'image/png']
     let valido = true
-
+    
     Array.from(files).forEach(file => {
+      console.log(files)
       if (!formatosPermitidos.includes(file.type)) {
         valido = false
         if(this.imagenes){
