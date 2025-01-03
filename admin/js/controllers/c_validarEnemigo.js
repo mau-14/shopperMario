@@ -7,9 +7,7 @@ class C_validarEnemigo {
     this.formElement = formElement
     this.nombreEnemigo = document.getElementById('nombre')
     this.descripcionEnemigo = document.getElementById('descripcion')
-    this.tipoSeleccionado = document.getElementById('tipo')
-    this.imagenes = document.getElementById('insertImagenes')
-    this.imagenes2 = document.getElementById('insert2')
+    this.imagenes = document.getElementById('newImages[]')
     this.contenedorImagen = document.createElement('div')
     this.formElement.appendChild(this.contenedorImagen)
     
@@ -25,7 +23,6 @@ class C_validarEnemigo {
     // Validación genérica de campos
     valido = this.validarCampo(this.nombreEnemigo, 'El nombre del enemigo es obligatorio') && valido
     valido = this.validarDescripcion(this.descripcionEnemigo) && valido
-    valido = this.validarCampo(this.tipoSeleccionado, 'Debes seleccionar un tipo') && valido
     valido = this.validarImagenes() && valido
 
     if (valido) {
@@ -59,12 +56,6 @@ class C_validarEnemigo {
       }else{
         return this.validarFormatoImagenes(this.imagenes.files)
       }
-    }else if(this.imagenes2){
-      if (this.imagenes2.files.length === 0) {
-        return true
-      }else{
-        return this.validarFormatoImagenes(this.imagenes2.files)
-      }
     }
   }
 
@@ -76,9 +67,6 @@ class C_validarEnemigo {
       if (!formatosPermitidos.includes(file.type)) {
         valido = false
         if(this.imagenes){
-
-          this.mostrarError(this.imagenes, 'Formato de la imagen no permitido, solo se aceptan JPEG y PNG')
-        }else if(this.imagenes2){
 
           this.mostrarError(this.imagenes, 'Formato de la imagen no permitido, solo se aceptan JPEG y PNG')
         }
