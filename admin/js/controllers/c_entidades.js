@@ -333,25 +333,25 @@ generarFormulario(personaje = null, data, esModificacion = false) {
   const existingImages = formData.getAll('existingImages[]')
   const deletedImages = formData.getAll('deletedImages[]')
   const newImages = formData.getAll('newImages[]')
-/*
-  const newImageNames = [];
-  const subeImagenes = new M_subirImagenes();
-*/
+
+  const newImageNames = []
+  const subeImagenes = new M_subirImagenes()
+
   try {
-    /*for (const imageFile of newImages) {
-      const filename = await subeImagenes.uploadImage(imageFile);
-      newImageNames.push(filename.filename);
+    for (const imageFile of newImages) {
+      const filename = await subeImagenes.uploadImage(imageFile)
+      newImageNames.push(filename.filename)
     }
-    data['newImages'] = newImageNames;*/
+    data['newImages'] = newImageNames
     data['existingImages'] = existingImages
     data['deletedImages'] = deletedImages
     console.log(data)
     // Instanciar el modelo para modificar la entidad
-    /*const modificar = new M_modificar();
-    await modificar.mandarModificacion(data);
+    /*const modificar = new M_modificar()
+    await modificar.mandarModificacion(data)
 
-    alert('Cambios guardados con éxito.');
-    modal.classList.add('hidden'); // Cerrar el modal
+    alert('Cambios guardados con éxito.')
+    modal.classList.add('hidden')
     */
     formulario.reset()
     modal.remove()
