@@ -165,7 +165,7 @@ generarTabla(personajes, data) {
 }
 
 eliminarPersonaje(id) {
-  const respuesta = confirm("Estás seguro que deseas borrarlo?");
+  const respuesta = confirm("Estás seguro que deseas borrarlo?")
   if (respuesta) {
     // Eliminar el personaje de la base de datos o de tu fuente de datos
     new M_modificar().eliminarPersonaje(Number(id)).then(() => {
@@ -174,7 +174,7 @@ eliminarPersonaje(id) {
       this.manejarOption(valorSelect)
     }).catch((error) => {
       console.error("Error al eliminar:", error)
-    });
+    })
   }
 }
 modificarPersonaje(id, personajes, data) {
