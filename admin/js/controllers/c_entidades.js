@@ -313,7 +313,6 @@ generarFormulario(personaje = null, data, esModificacion = false) {
   guardarCambios.addEventListener('click', async (event) => {
   event.preventDefault()
 
-  console.log(formulario)
   // Validar formulario
   const valido = new C_validarEnemigo(formulario).validarFormulario()
   if (!valido) {
