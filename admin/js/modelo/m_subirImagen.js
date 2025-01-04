@@ -7,7 +7,7 @@ class M_subirImagenes {
     console.log(formData)
 
     try {
-      const response = await fetch('../../app/controllers/c_subirImagen.php', {
+      const response = await fetch('/SHOPPERMARIO/admin/app/controllers/c_subirImagen.php', {
         method: 'POST',
         body: formData,
       });

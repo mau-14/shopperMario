@@ -1,7 +1,6 @@
 <?php
-$uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/shopperMario/src/admin/img/'; 
+$uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/admin/img/'; 
 $response = array();
-
 // Lista de extensiones y tipos MIME permitidos
 $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
 $allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];

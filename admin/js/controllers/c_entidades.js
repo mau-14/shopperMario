@@ -10,6 +10,20 @@ class C_entidades {
     this.panelAdmin = panelAdmin
     this.contenedorTabla = document.createElement('div')
     this.contenedorTabla.id = 'contenedorTabla'
+
+    this.contenedorTabla.addEventListener('click', (event) => {
+    const target = event.target
+    const id = target.dataset.id
+
+    if (id) {
+      if (target.classList.contains('btn-eliminar')) {
+        this.eliminarPersonaje(id)
+      } else if (target.classList.contains('btn-modificar')) {
+        this.modificarPersonaje(id, personajes, data)
+      }
+    }
+  })
+
   }
 
 async crearSelect() {
@@ -114,7 +128,7 @@ generarTabla(personajes, data) {
         const imagenes = personaje[cabecera].split(',')
         imagenes.forEach(url => {
           const imagen = document.createElement('img')
-          imagen.src = '../../img/' + url.trim()
+          imagen.src = '/admin/img/' + url.trim()
           imagen.className = 'imagen-lista'
           imagen.alt = 'Imagen del personaje'
           imagen.style.width = '100px'
@@ -148,28 +162,21 @@ generarTabla(personajes, data) {
   // Finalmente, agregar el fragmento al contenedor de la tabla
   this.contenedorTabla.appendChild(fragment)
 
-  // Delegación de eventos
-  this.contenedorTabla.addEventListener('click', (event) => {
-    const target = event.target
-    const id = target.dataset.id
-
-    if (id) {
-      if (target.classList.contains('btn-eliminar')) {
-        this.eliminarPersonaje(id)
-      } else if (target.classList.contains('btn-modificar')) {
-        this.modificarPersonaje(id, personajes, data)
-      }
-    }
-  })
 }
 
 eliminarPersonaje(id) {
-  const respuesta = confirm("Estás seguro que deseas borrarlo?")
+  const respuesta = confirm("Estás seguro que deseas borrarlo?");
   if (respuesta) {
-    new M_modificar().eliminarPersonaje(Number(id))
+    // Eliminar el personaje de la base de datos o de tu fuente de datos
+    new M_modificar().eliminarPersonaje(Number(id)).then(() => {
+      // Una vez eliminada la persona, recargar la tabla
+      const valorSelect = document.getElementById('select-entidades').value;
+      this.manejarOption(valorSelect, data);  // Recalcular los datos
+    }).catch((error) => {
+      console.error("Error al eliminar:", error);
+    });
   }
 }
-
 modificarPersonaje(id, personajes, data) {
   const personajeSeleccionado = personajes.find(p => p.idPersonaje == id)
   this.generarFormulario(personajeSeleccionado, data, true)
@@ -346,12 +353,18 @@ generarFormulario(personaje = null, data, esModificacion = false) {
     data['deletedImages'] = deletedImages
     console.log(data)
     // Instanciar el modelo para modificar la entidad
-    /*const modificar = new M_modificar()
-    await modificar.mandarModificacion(data)
+
+    const modificar = new M_modificar()
+
+    if(esModificacion){
+      await modificar.mandarModificacion(data)
+    }else{
+      
+      await modificar.mandarInsercion(data)
+    }
 
     alert('Cambios guardados con éxito.')
     modal.classList.add('hidden')
-    */
     formulario.reset()
     modal.remove()
   } catch (error) {

@@ -11,7 +11,7 @@ class   M_modificar{
         },
         body: JSON.stringify(data)
       })
-      const resultado = response.json()
+      const resultado = await response.json()
       
 
       console.log(resultado)
@@ -32,7 +32,7 @@ class   M_modificar{
         },
         body: JSON.stringify(data)
       })
-      const resultado = response.json()
+      const resultado = await response.json()
       
 
       console.log(resultado)
@@ -55,7 +55,7 @@ class   M_modificar{
                     idPersonaje: id
                 })
             }) 
-      const data = response.json()
+      const data =  await response.json()
       
 
       console.log(data)

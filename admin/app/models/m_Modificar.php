@@ -170,7 +170,9 @@ public function consultaInsertar($dato) {
                 }
 
                 // Iterar sobre las imágenes y guardarlas en la base de datos
+                error_log(print_r($dato)); 
                 foreach ($dato['newImages'] as $imageUrl) {
+                  error_log('tu mama puta');
                     $stmtImage->bind_param("is", $idPersonaje, $imageUrl); // 'i' para el ID del personaje, 's' para la URL
                     $executeImageResult = $stmtImage->execute();
 
