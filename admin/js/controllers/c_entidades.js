@@ -86,10 +86,10 @@ createOption(value, text) {
   option.textContent = text
   return option
 }
-async manejarOption(valorSelect, data) {
+async manejarOption(valorSelect) {
   const listarTablas = new M_listarTareas()
   let personajes = await listarTablas.listar(valorSelect)
-  this.generarTabla(personajes, data)
+  this.generarTabla(personajes)
 }
 
 generarTabla(personajes, data) {
@@ -170,10 +170,10 @@ eliminarPersonaje(id) {
     // Eliminar el personaje de la base de datos o de tu fuente de datos
     new M_modificar().eliminarPersonaje(Number(id)).then(() => {
       // Una vez eliminada la persona, recargar la tabla
-      const valorSelect = document.getElementById('select-entidades').value;
-      this.manejarOption(valorSelect, data);  // Recalcular los datos
+      const valorSelect = document.getElementById('select-entidades').value
+      this.manejarOption(valorSelect)
     }).catch((error) => {
-      console.error("Error al eliminar:", error);
+      console.error("Error al eliminar:", error)
     });
   }
 }
