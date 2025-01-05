@@ -19,7 +19,7 @@ class C_entidades {
       if (target.classList.contains('btn-eliminar')) {
         this.eliminarPersonaje(id)
       } else if (target.classList.contains('btn-modificar')) {
-        this.modificarPersonaje(id, personajes, data)
+        this.modificarPersonaje(id)
       }
     }
   })
@@ -177,14 +177,20 @@ eliminarPersonaje(id) {
     })
   }
 }
-modificarPersonaje(id, personajes, data) {
+async modificarPersonaje(id) {
+  const entidades = new M_entidades()
+  const data = await entidades.datosDashboard()
+
+  const valorSelect = document.getElementById('select-entidades').value
+  const listarTablas = new M_listarTareas()
+  let personajes = await listarTablas.listar(valorSelect)
   const personajeSeleccionado = personajes.find(p => p.idPersonaje == id)
   this.generarFormulario(personajeSeleccionado, data, true)
 }
 
 
 generarFormulario(personaje = null, data, esModificacion = false) {
-
+    console.log(personaje)
     let modal = document.getElementById('modal')
     if (!modal) {
         modal = document.createElement('div')
@@ -209,7 +215,7 @@ generarFormulario(personaje = null, data, esModificacion = false) {
     formulario.enctype = 'multipart/form-data'
 
     // Campos a manejar
-    const fields = ['nombre', 'descripcion', 'tipo', 'urls']
+    const fields = ['idPersonaje','nombre', 'descripcion', 'tipo', 'urls']
 
     // Rellenar el formulario según si es modificación o inserción
     fields.forEach(key => {
@@ -241,7 +247,13 @@ generarFormulario(personaje = null, data, esModificacion = false) {
                     option.selected = true
                 }
                 input.appendChild(option)
-            });
+            })
+        } else if (key === 'idPersonaje' && esModificacion){
+            input = document.createElement('input')
+            input.type = 'hidden'
+            input.id = 'idPersonaje'
+            input.name = key
+            input.value = personaje[key]
         } else if (key === 'urls') {
             // Manejo de imágenes
             const imageContainer = document.createElement('div')
@@ -288,7 +300,12 @@ generarFormulario(personaje = null, data, esModificacion = false) {
                     hiddenInput.value = url.trim()
                     imgWrapper.appendChild(hiddenInput)
                 })
-            }
+
+                input = document.createElement('input')
+                input.type = 'hidden'
+                input.id = 'idPersonaje'
+                input.value = personaje['idPersonaje']
+           
 
             formulario.appendChild(label)
             formulario.appendChild(imageContainer)
@@ -304,7 +321,15 @@ generarFormulario(personaje = null, data, esModificacion = false) {
             formulario.appendChild(document.createElement('br'))
             return; // Evitar procesar más después de manejar imágenes
         }
+        }else{
 
+
+          input = document.createElement('input')
+          input.type = 'hidden'
+          input.id = 'idPersonaje'
+          input.value = personaje['idPersonaje']
+          console.log('ENTROO')
+        }
         // Agregar los elementos comunes al formulario
         formulario.appendChild(label)
         formulario.appendChild(input)
@@ -329,9 +354,12 @@ generarFormulario(personaje = null, data, esModificacion = false) {
 
   const formData = new FormData(formulario)
 
+    console.log(formData)
+
   // Crear objeto con los datos del formulario
   const data = Object.fromEntries(formData.entries())
   if (data.idPersonaje) {
+    console.log(data.idPersonaje)
     data.idPersonaje = Number(data.idPersonaje)
   }
 
@@ -355,7 +383,7 @@ generarFormulario(personaje = null, data, esModificacion = false) {
     // Instanciar el modelo para modificar la entidad
 
     const modificar = new M_modificar()
-
+    console.log(data)
     if(esModificacion){
       await modificar.mandarModificacion(data)
     }else{
