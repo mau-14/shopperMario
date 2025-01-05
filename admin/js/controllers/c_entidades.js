@@ -128,7 +128,7 @@ generarTabla(personajes, data) {
         const imagenes = personaje[cabecera].split(',')
         imagenes.forEach(url => {
           const imagen = document.createElement('img')
-          imagen.src = '/admin/img/' + url.trim()
+          imagen.src = '/SHOPPERMARIO/admin/img/' + url.trim()
           imagen.className = 'imagen-lista'
           imagen.alt = 'Imagen del personaje'
           imagen.style.width = '100px'
