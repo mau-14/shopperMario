@@ -223,7 +223,7 @@ generarFormulario(personaje = null, data, esModificacion = false) {
         label.textContent = key.toUpperCase()
         label.setAttribute('for', key)
 
-        let input
+        let input 
 
         if (key === 'nombre') {
             input = document.createElement('input')
@@ -301,17 +301,12 @@ generarFormulario(personaje = null, data, esModificacion = false) {
                     imgWrapper.appendChild(hiddenInput)
                 })
 
-                input = document.createElement('input')
-                input.type = 'hidden'
-                input.id = 'idPersonaje'
-                input.value = personaje['idPersonaje']
-           
 
             formulario.appendChild(label)
             formulario.appendChild(imageContainer)
 
-            // Campo para seleccionar nuevas imágenes
-            const newImageInput = document.createElement('input')
+            }
+              const newImageInput = document.createElement('input')
             newImageInput.type = 'file'
             newImageInput.id = 'insertImagenes'
             newImageInput.name = 'newImages[]'
@@ -319,21 +314,14 @@ generarFormulario(personaje = null, data, esModificacion = false) {
             formulario.appendChild(newImageInput)
 
             formulario.appendChild(document.createElement('br'))
-            return; // Evitar procesar más después de manejar imágenes
-        }
-        }else{
-
-
-          input = document.createElement('input')
-          input.type = 'hidden'
-          input.id = 'idPersonaje'
-          input.value = personaje['idPersonaje']
-          console.log('ENTROO')
-        }
-        // Agregar los elementos comunes al formulario
+            return; 
+        } 
+      // Agregar los elementos comunes al formulario
+        if (input) {
         formulario.appendChild(label)
         formulario.appendChild(input)
-        formulario.appendChild(document.createElement('br'))
+          formulario.appendChild(document.createElement('br'))
+        }
     })
 
     modalBody.appendChild(formulario);
